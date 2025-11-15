@@ -82,11 +82,10 @@ WSGI_APPLICATION = 'proyecto_sgam.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'sgam_db.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'sgam_bd.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

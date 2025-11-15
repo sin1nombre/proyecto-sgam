@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Nuevo Paciente</h2>
+
+<form method="POST" class="card p-4 shadow">
+    {% csrf_token %}
+
+    <label>Nombre</label>
+    <input class="form-control mb-3" name="nombre">
+
+    <label>RUT</label>
+    <input class="form-control mb-3" name="rut">
+
+    <label>Teléfono</label>
+    <input class="form-control mb-3" name="telefono">
+
+    <label>Correo</label>
+    <input type="email" class="form-control mb-3" name="correo">
+
+    <label>Ficha EHR</label>
+    <input class="form-control mb-3" name="ficha_ehr">
+
+    <button class="btn btn-primary">Guardar</button>
+</form>
+
+{% endblock %}

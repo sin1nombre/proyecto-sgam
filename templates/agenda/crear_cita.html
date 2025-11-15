@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Nueva Cita</h2>
+
+<form method="POST" class="card p-4 shadow">
+    {% csrf_token %}
+
+    <label>Paciente</label>
+    <select name="paciente" class="form-select mb-3">
+        {% for p in pacientes %}
+            <option value="{{ p.id }}">{{ p.nombre }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Prestación</label>
+    <select name="prestacion" class="form-select mb-3">
+        {% for pr in prestaciones %}
+            <option value="{{ pr.id }}">{{ pr.nombre }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Profesional</label>
+    <select name="profesional" class="form-select mb-3">
+        {% for prof in profesionales %}
+            <option value="{{ prof.id }}">{{ prof.nombre }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Box</label>
+    <select name="box" class="form-select mb-3">
+        {% for b in boxes %}
+            <option value="{{ b.id }}">{{ b.numero }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Fecha</label>
+    <input type="date" name="fecha" class="form-control mb-3">
+
+    <label>Hora</label>
+    <input type="time" name="hora" class="form-control mb-3">
+
+    <button class="btn btn-primary">Guardar Cita</button>
+</form>
+
+{% endblock %}

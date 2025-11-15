@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="mb-3">Listado de Citas</h2>
+
+<a href="{% url 'crear_cita' %}" class="btn btn-success mb-3">Nueva Cita</a>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Paciente</th>
+            <th>Prestación</th>
+            <th>Profesional</th>
+            <th>Box</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for c in citas %}
+        <tr>
+            <td>{{ c.paciente.nombre }}</td>
+            <td>{{ c.prestacion.nombre }}</td>
+            <td>{{ c.profesional.nombre }}</td>
+            <td>{{ c.box.numero }}</td>
+            <td>{{ c.fecha }}</td>
+            <td>{{ c.hora }}</td>
+            <td>{{ c.estado }}</td>
+            <td>
+                <a class="btn btn-warning btn-sm" href="/citas/editar/{{ c.id }}/">Editar</a>
+                <a class="btn btn-danger btn-sm" href="/citas/cancelar/{{ c.id }}/">Cancelar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

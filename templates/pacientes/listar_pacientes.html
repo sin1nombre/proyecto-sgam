@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Pacientes</h2>
+
+<a href="/pacientes/crear/" class="btn btn-success mb-3">Nuevo Paciente</a>
+
+<table class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Nombre</th>
+            <th>RUT</th>
+            <th>Teléfono</th>
+            <th>Correo</th>
+            <th>Ficha EHR</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for p in pacientes %}
+        <tr>
+            <td>{{ p.nombre }}</td>
+            <td>{{ p.rut }}</td>
+            <td>{{ p.telefono }}</td>
+            <td>{{ p.correo }}</td>
+            <td>{{ p.ficha_ehr }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
