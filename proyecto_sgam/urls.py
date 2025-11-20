@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import home   # ← IMPORTA LA VISTA
+from .views import home 
 
 urlpatterns = [
-    path('', home, name='home'),   # ← INICIO SIN APP
+    path('', home, name='home'), 
     path('admin/', admin.site.urls),
     path('citas/', include('agenda.urls')),
     path('pacientes/', include('pacientes.urls')),
