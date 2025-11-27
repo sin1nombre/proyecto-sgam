@@ -16,14 +16,15 @@ def crear_cita(request):
 
     if request.method == 'POST':
         cita = Cita.objects.create(
-            fecha=request.POST.get('fecha'),
-            hora=request.POST.get('hora'),
-            estado=request.POST.get('estado'),
-            paciente_id=request.POST.get('paciente'),
-            profesional_id=request.POST.get('profesional'),
-            prestacion_id=request.POST.get('prestacion'),
-            box_id=request.POST.get('box'),
+            fecha = request.POST.get('fecha'),
+            hora = request.POST.get('hora'),
+            estado = request.POST.get('estado'),
+            paciente_id = request.POST.get('paciente'),
+            profesional_id = request.POST.get('profesional'),
+            prestacion_id = request.POST.get('prestacion'),
+            box_id = request.POST.get('box'),
         )
+
 
         Notificacion.objects.create(
             mensaje=f"Cita agendada para {cita.fecha} a las {cita.hora}",
