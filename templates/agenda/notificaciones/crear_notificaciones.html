@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Crear Notificación{% endblock %}
+{% block content %}
+
+<h2 class="mb-4">Crear Notificación</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="form-label">Mensaje</label>
+        <textarea class="form-control" name="mensaje" rows="3" required></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Cita asociada</label>
+        <select class="form-select" name="cita_id" required>
+            <option value="">Seleccione una cita</option>
+            {% for c in citas %}
+                <option value="{{ c.id }}">Cita #{{ c.id }} - {{ c.paciente.nombre }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar Notificación</button>
+    <a href="/notificaciones/" class="btn btn-secondary">Cancelar</a>
+
+</form>
+
+{% endblock %}

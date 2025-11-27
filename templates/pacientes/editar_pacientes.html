@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="mb-4">Editar Paciente</h2>
+
+<form method="post" class="card p-4 shadow-sm">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label class="form-label">Nombre completo</label>
+        <input type="text" name="nombre" value="{{ paciente.nombre }}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">RUT</label>
+        <input type="text" name="rut" value="{{ paciente.rut }}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Teléfono</label>
+        <input type="text" name="telefono" value="{{ paciente.telefono }}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Correo electrónico</label>
+        <input type="email" name="correo" value="{{ paciente.correo }}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Ficha EHR</label>
+        <input type="text" name="ficha_ehr" value="{{ paciente.ficha_ehr }}" class="form-control">
+    </div>
+
+    <div class="d-flex justify-content-between">
+        <a href="{% url 'listar_pacientes' %}" class="btn btn-secondary">Volver</a>
+        <button class="btn btn-primary">Actualizar</button>
+    </div>
+</form>
+
+{% endblock %}

@@ -1,32 +1,45 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% block content %}
 
-<h2>Pacientes</h2>
+<h2 class="mb-4">Listado de Pacientes</h2>
 
-<a href="/pacientes/crear/" class="btn btn-success mb-3">Nuevo Paciente</a>
+<a href="{% url 'crear_paciente' %}" class="btn btn-primary mb-3">+ Nuevo Paciente</a>
 
-<table class="table table-hover">
+<table class="table table-bordered table-striped shadow-sm">
+    
     <thead class="table-dark">
         <tr>
+            <th>ID</th>
             <th>Nombre</th>
             <th>RUT</th>
             <th>Teléfono</th>
             <th>Correo</th>
             <th>Ficha EHR</th>
+            <th>Acciones</th>
         </tr>
     </thead>
 
     <tbody>
         {% for p in pacientes %}
         <tr>
+            <td>{{ p.id }}</td>
             <td>{{ p.nombre }}</td>
             <td>{{ p.rut }}</td>
             <td>{{ p.telefono }}</td>
             <td>{{ p.correo }}</td>
             <td>{{ p.ficha_ehr }}</td>
+            <td>
+                <a href="{% url 'editar_paciente' p.id %}" class="btn btn-sm btn-warning">Editar</a>
+                <a href="{% url 'eliminar_paciente' p.id %}" class="btn btn-sm btn-danger">Eliminar</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7" class="text-center">No hay pacientes registrados.</td>
         </tr>
         {% endfor %}
     </tbody>
+
 </table>
 
 {% endblock %}

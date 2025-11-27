@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="mb-4">Editar Profesional</h2>
+
+<form method="post" class="card p-4 shadow-sm">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label class="form-label">RUT</label>
+        <input type="text" name="rut" value="{{ profesional.rut }}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input type="text" name="nombre" value="{{ profesional.nombre }}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Apellido</label>
+        <input type="text" name="apellido" value="{{ profesional.apellido }}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Especialidad</label>
+        <input type="text" name="especialidad" value="{{ profesional.especialidad }}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Teléfono</label>
+        <input type="text" name="telefono" value="{{ profesional.telefono }}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Correo electrónico</label>
+        <input type="email" name="correo" value="{{ profesional.correo }}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Horario</label>
+        <input type="text" name="horario" value="{{ profesional.horario }}" class="form-control">
+    </div>
+
+    <div class="d-flex justify-content-between">
+        <a href="{% url 'listar_profesionales' %}" class="btn btn-secondary">Cancelar</a>
+        <button class="btn btn-primary">Actualizar</button>
+    </div>
+</form>
+
+{% endblock %}

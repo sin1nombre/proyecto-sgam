@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="mb-4">Boxes</h2>
+
+<a href="{% url 'crear_box' %}" class="btn btn-primary mb-3">+ Nuevo Box</a>
+
+<table class="table table-bordered table-striped shadow-sm">
+	<thead class="table-dark">
+		<tr>
+			<th>Número</th>
+			<th>Disponible</th>
+			<th>Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for b in boxes %}
+		<tr>
+			<td>{{ b.numero }}</td>
+			<td>{{ b.disponible|yesno:"Sí,No" }}</td>
+			<td>
+				<a href="{% url 'editar_box' b.id %}" class="btn btn-warning btn-sm">Editar</a>
+				<a onclick="return confirm('¿Eliminar box?');"
+				   href="{% url 'eliminar_box' b.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+			</td>
+		</tr>
+		{% empty %}
+		<tr><td colspan="3" class="text-center">Sin boxes creados.</td></tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+{% endblock %}

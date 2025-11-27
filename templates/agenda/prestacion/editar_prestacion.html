@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="mb-4">Editar Prestación</h2>
+
+<form method="post">
+	{% csrf_token %}
+	<div class="card shadow-sm p-4">
+
+		<div class="mb-3">
+			<label class="form-label">Nombre</label>
+			<input type="text" class="form-control" name="nombre" value="{{ prestacion.nombre }}">
+		</div>
+		<div class="mb-3">
+			<label class="form-label">Descripción</label>
+			<textarea class="form-control" name="descripcion">{{ prestacion.descripcion }}</textarea>
+		</div>
+		<div class="mb-3">
+			<label class="form-label">Duración (minutos)</label>
+			<input type="number" class="form-control" name="duracion_minutos" value="{{ prestacion.duracion_minutos }}">
+		</div>
+		<button class="btn btn-success">Actualizar</button>
+		<a href="{% url 'listar_prestaciones' %}" class="btn btn-secondary">Cancelar</a>
+
+	</div>
+</form>
+
+{% endblock %}

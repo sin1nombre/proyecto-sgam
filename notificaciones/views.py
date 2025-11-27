@@ -1,3 +1,8 @@
 from django.shortcuts import render
+from .models import Notificacion
 
-# Create your views here.
+def listar_notificaciones(request):
+    notificaciones = Notificacion.objects.all()
+    return render(request, 'notificaciones/listar_notificaciones.html', {
+        'notificaciones': notificaciones
+    })

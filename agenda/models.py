@@ -1,15 +1,19 @@
 from django.db import models
-from pacientes.models import Pacientes
+from pacientes.models import Paciente
 from profesionales.models import Profesional
 
 class Prestacion(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField()
     duracion_minutos = models.IntegerField()
+    def __str__(self):
+        return self.nombre
 
 class Box(models.Model):
     numero = models.IntegerField()
     disponible = models.BooleanField(default=True)
+    def __str__(self):
+        return f"Box {self.numero}"
 
 class PrestacionProfesional(models.Model):
     prestacion = models.ForeignKey(Prestacion, on_delete=models.CASCADE)
@@ -18,7 +22,7 @@ class PrestacionProfesional(models.Model):
     activo = models.BooleanField(default=True)
 
 class Cita(models.Model):
-    paciente = models.ForeignKey(Pacientes, on_delete=models.CASCADE)
+    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
     prestacion = models.ForeignKey(Prestacion, on_delete=models.CASCADE)
     profesional = models.ForeignKey(Profesional, on_delete=models.CASCADE)
     box = models.ForeignKey(Box, on_delete=models.SET_NULL, null=True)

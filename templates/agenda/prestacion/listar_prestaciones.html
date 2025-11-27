@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="mb-4">Prestaciones</h2>
+
+<a href="{% url 'crear_prestacion' %}" class="btn btn-primary mb-3">+ Nueva Prestación</a>
+
+<table class="table table-bordered table-striped shadow-sm">
+	<thead class="table-dark">
+		<tr>
+			<th>Nombre</th>
+			<th>Duración (min)</th>
+			<th>Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for p in prestaciones %}
+		<tr>
+			<td>{{ p.nombre }}</td>
+			<td>{{ p.duracion_minutos }}</td>
+			<td>
+				<a href="{% url 'editar_prestacion' p.id %}" class="btn btn-warning btn-sm">Editar</a>
+				<a onclick="return confirm('¿Eliminar prestación?');"
+				   href="{% url 'eliminar_prestacion' p.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+			</td>
+		</tr>
+		{% empty %}
+		<tr><td colspan="3" class="text-center">No hay prestaciones registradas.</td></tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+{% endblock %}

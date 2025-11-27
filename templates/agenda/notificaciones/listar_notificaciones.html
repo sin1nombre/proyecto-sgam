@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="mb-4">Notificaciones enviadas</h2>
+
+<table class="table table-bordered table-striped shadow-sm">
+	<thead class="table-dark">
+		<tr>
+			<th>ID</th>
+			<th>Mensaje</th>
+			<th>Fecha de envío</th>
+			<th>Cita asociada</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for n in notificaciones %}
+		<tr>
+			<td>{{ n.id }}</td>
+			<td>{{ n.mensaje }}</td>
+			<td>{{ n.fecha_envio }}</td>
+			<td>#{{ n.cita.id }} - {{ n.cita.fecha }} {{ n.cita.hora }}</td>
+		</tr>
+		{% empty %}
+		<tr><td colspan="4" class="text-center">No hay notificaciones registradas.</td></tr>
+		{% endfor %}
+	</tbody>
+</table>
+<a href="/" class="btn btn-secondary">Volver</a>
+
+{% endblock %}

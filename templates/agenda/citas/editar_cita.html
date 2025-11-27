@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="mb-4">Editar Cita</h2>
+
+<form method="post">
+	{% csrf_token %}
+	<div class="card shadow-sm p-4">
+
+		<div class="row mb-3">
+			<div class="col-md-4">
+				<label class="form-label">Paciente</label>
+				<select name="paciente" class="form-select">
+					{% for p in pacientes %}
+					<option value="{{ p.id }}" {% if cita.paciente.id == p.id %}selected{% endif %}>
+						{{ p.nombre }}
+					</option>
+					{% endfor %}
+				</select>
+			</div>
+			<div class="col-md-4">
+				<label class="form-label">Profesional</label>
+				<select name="profesional" class="form-select">
+					{% for pr in profesionales %}
+					<option value="{{ pr.id }}" {% if cita.profesional.id == pr.id %}selected{% endif %}>
+						{{ pr.nombre }}
+					</option>
+					{% endfor %}
+				</select>
+			</div>
+			<div class="col-md-4">
+				<label class="form-label">Prestación</label>
+				<select name="prestacion" class="form-select">
+					{% for pre in prestaciones %}
+					<option value="{{ pre.id }}" {% if cita.prestacion.id == pre.id %}selected{% endif %}>
+						{{ pre.nombre }}
+					</option>
+					{% endfor %}
+				</select>
+			</div>
+		</div>
+		<div class="row mb-3">
+			<div class="col-md-4">
+				<label class="form-label">Box</label>
+				<select name="box" class="form-select">
+					{% for b in boxes %}
+					<option value="{{ b.id }}" {% if cita.box.id == b.id %}selected{% endif %}>
+						Box {{ b.numero }}
+					</option>
+					{% endfor %}
+				</select>
+			</div>
+			<div class="col-md-4">
+				<label class="form-label">Fecha</label>
+				<input type="date" class="form-control" name="fecha" value="{{ cita.fecha }}">
+			</div>
+			<div class="col-md-4">
+				<label class="form-label">Hora</label>
+				<input type="time" class="form-control" name="hora" value="{{ cita.hora }}">
+			</div>
+		</div>
+		<div class="mb-3">
+			<label class="form-label">Estado</label>
+			<select name="estado" class="form-select">
+				<option {% if cita.estado == "Agendada" %}selected{% endif %}>Agendada</option>
+				<option {% if cita.estado == "Cancelada" %}selected{% endif %}>Cancelada</option>
+				<option {% if cita.estado == "Realizada" %}selected{% endif %}>Realizada</option>
+			</select>
+		</div>
+		<button class="btn btn-success">Actualizar</button>
+		<a href="{% url 'listar_citas' %}" class="btn btn-secondary">Cancelar</a>
+
+	</div>
+</form>
+
+{% endblock %}
